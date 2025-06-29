@@ -1,9 +1,13 @@
+const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 
 const config = getDefaultConfig(__dirname);
 
 // Add support for web
 config.resolver.platforms = ['ios', 'android', 'native', 'web'];
+
+// Ensure Metro correctly resolves node_modules
+config.resolver.nodeModulesPaths = [path.resolve(__dirname, 'node_modules')];
 
 // Add TypeScript extensions to resolver
 config.resolver.sourceExts.push('ts', 'tsx');
